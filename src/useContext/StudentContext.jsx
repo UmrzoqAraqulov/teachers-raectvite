@@ -7,7 +7,6 @@ import { ExclamationCircleOutlined } from "@ant-design/icons";
 
 export const StudentInfoContext = createContext();
 const { useForm } = Form;
-console.log(useForm);
 const StudentContext = ({ children }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selected, setSelected] = useState(null);
@@ -20,11 +19,6 @@ const StudentContext = ({ children }) => {
   const [teacherChange, setTeacherChange] = useState("");
   const [teachersInfo, setTeachersInfo] = useState([]);
 
-  const changeTeacher = useCallback(() => {
-    setTeacherChange(teachersInfo?.filter((el) => +el.id === teacherId)[0].firstName);
-    console.log(2);
-  },[teacherId,teachersInfo]);
-
   const teacherList = useCallback(async () => {
     try {
       const { data } = await request(ENDPOINT);
@@ -33,7 +27,6 @@ const StudentContext = ({ children }) => {
         arr.push({ firstName: teacher.firstName, id: teacher.id });
       });
       setTeacherChange(arr?.filter((el) => +el.id === teacherId)[0].firstName);
-      console.log(teacherId);
       setTeachersInfo(arr);
     } catch (err) {
       console.log(err);

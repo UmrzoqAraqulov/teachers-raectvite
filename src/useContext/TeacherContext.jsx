@@ -68,7 +68,8 @@ const TeacherContext = ({ children }) => {
   const editTeacher = async (id) => {
     const { data } = await request.get(`${ENDPOINT}/${id}`);
     const newData = { ...data, group: data.group.join(",") };
-    form.setFieldsValue(newData);
+    console.log();
+    form.setFieldsValue({teacher:newData});
     console.log({ ...newData });
     setSelected(id);
     showModal();

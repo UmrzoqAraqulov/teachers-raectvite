@@ -11,6 +11,7 @@ const LoginContext = ({ children }) => {
     auth,
     setAuth,
   };
+  console.log(1);
   return <LoginInfo.Provider value={state}>{children}</LoginInfo.Provider>;
 };
 

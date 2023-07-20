@@ -26,7 +26,9 @@ const TeacherPage = () => {
   return (
     <div>
       <div className="navBar">
-        <h2 className="title">Teachers</h2>
+        <h2 style={{ color: "black" }} className="title">
+          Teachers
+        </h2>
         <Search
           placeholder="input search text"
           onSearch={onSearch}
@@ -44,16 +46,18 @@ const TeacherPage = () => {
           onChange={onIsMarriedChange}
           options={ISMARRIED.map((el) => ({
             label: el,
-            value: el==="Married"?true:el==="Single"?false:el,
+            value: el === "Married" ? true : el === "Single" ? false : el,
           }))}
         />
         <Button type="primary" onClick={showModal}>
           Add Teacher
         </Button>
-        <TeacherModal/>
+        <TeacherModal />
       </div>
       <div className="card-row">
-        {teachers.map((el)=><CardTeacher key={el.id} {...el}/>)}
+        {teachers.map((el) => (
+          <CardTeacher key={el.id} {...el} />
+        ))}
       </div>
     </div>
   );

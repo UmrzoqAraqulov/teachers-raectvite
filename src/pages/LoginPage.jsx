@@ -1,84 +1,89 @@
 import { useContext, useState } from "react";
-import { LoginInfo } from "../useContext/LoginContext";
+
+import "./loginStyle.css";
 import { useNavigate } from "react-router-dom";
-
-const LogInPage = () => {
+import { LoginInfo } from "../useContext/LoginContext";
+const LoginPage = () => {
   const navigate = useNavigate();
-  const { setAuth } = useContext(LoginInfo);
-  const [login, setLogin] = useState({ username: "", password: "" });
-
-  const submit = (e) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const {setAuth} = useContext(LoginInfo);
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (login.username === "admin" && login.password === "12345") {
-      localStorage.setItem("auth", true);
+    setUsername(username);
+    setPassword(password);
+    if (username === "admin" && password === "12345") {
+      navigate("/teachers");
       setAuth(true);
-      navigate("/");
+      localStorage.setItem("auth",true)
     }
   };
-
-  const changeInput = (e) => {
-    setLogin({ ...login, [e.target.name]: e.target.value });
-  };
-
   return (
-    <div
-      style={{
-        background:
-          "url(https://www.shutterstock.com/shutterstock/videos/1059906425/thumb/1.jpg?ip=x480)",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-      }}
-      className="flex justify-center items-center h-screen"
-    >
-      <div
-        style={{ width: "400px", height: "350px" }}
-        className="rounded bg-gray-200 bg-opacity-50 text-center pt-10"
-      >
-        <h2 className="text-4xl font-semibold pb-10">LogIn</h2>
-        <form onSubmit={submit} className="gap-y-4 flex flex-col">
-          <div className="flex flex-col w-full items-center gap-1">
-            <label
-              className="w-24 font-semibold inline-block text-xl"
-              htmlFor="username"
-            >
-              UserName:
-            </label>
-            <input
-              name="username"
-              value={login.username}
-              className="py-1 px-3 outline-none rounded text-base w-72"
-              onChange={changeInput}
-              type="text"
-              placeholder="UserName"
-              min={4}
-              max={12}
-            />
+    <div className="container">
+      <div className="form-box">
+        <div className="header-form">
+          <h4 className="text-primary text-center">
+            <i className="fa fa-user-circle" style={{ fontSize: "110px" }}></i>
+          </h4>
+          <div className="image"></div>
+        </div>
+        <div className="body-form">
+          <form onSubmit={handleSubmit}>
+            <div className="input-group mb-3">
+              <div className="input-group-prepend">
+                <span className="input-group-text">
+                  <i className="fa fa-user"></i>
+                </span>
+              </div>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div className="input-group mb-3">
+              <div className="input-group-prepend">
+                <span className="input-group-text">
+                  <i className="fa fa-lock"></i>
+                </span>
+              </div>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <button type="submit" className="btn btn-secondary btn-block">
+              LOGIN
+            </button>
+            <div className="message">
+              <div>
+                <input type="checkbox" /> Remember ME
+              </div>
+              <div>
+                <a href="#">Forgot your password</a>
+              </div>
+            </div>
+          </form>
+          <div className="social">
+            <a href="#">
+              <i className="fab fa-facebook"></i>
+            </a>
+            <a href="#">
+              <i className="fab fa-twitter-square"></i>
+            </a>
+            <a href="#">
+              <i className="fab fa-google"></i>
+            </a>
           </div>
-          <div className="flex flex-col w-full items-center gap-2">
-            <label
-              className="w-24 font-semibold inline-block text-xl"
-              htmlFor="username"
-            >
-              Password:
-            </label>
-            <input
-              name="password"
-              value={login.password}
-              className="py-1 px-3 outline-none rounded text-base w-72"
-              onChange={changeInput}
-              type="text"
-              placeholder="Password"
-              min={4}
-              max={8}
-            />
-          </div>
-          <button className="py-1 mx-auto px-2 bg-blue-600 rounded w-32 mt-2 text-xl">
-            LogIn
-          </button>
-        </form>
+        </div>
       </div>
     </div>
   );
 };
 
-export default LogInPage;
+export default LoginPage;

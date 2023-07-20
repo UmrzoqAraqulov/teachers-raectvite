@@ -42,7 +42,7 @@ const StudnetsPage = () => {
   return (
     <div>
       <div className="navBar">
-        <h2 className="title">Students</h2>
+        <h2 style={{color:"black"}} className="title">Students</h2>
         <Search
           placeholder="input search text"
           onSearch={onSearch}
