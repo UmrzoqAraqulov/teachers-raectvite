@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.ant-layout-sider{
+  height: 100vh;
+  padding: 15px 0px;
+}
+.ant-layout-content{
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.ant-modal-title{
+  font-size: 26px !important;
+  line-height: 24px !important;
+}
+
+.ant-col{
+  width: 1000px !important; 
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.ant-form-item{
+  margin: 12px !important;
+}
